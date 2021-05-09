@@ -9,16 +9,14 @@ using Unity.MLAgents.Sensors;
 public class RLAgent : Agent
 {
 
-    int episode = 0;
-
     //passed in as observations to the agent
     [SerializeField] private Transform opponentTransform;
     [SerializeField] private Transform ballTransform;
 
     //set to public so controller can reference these variables
-    [HideInInspector] public int acceleration;
-    [HideInInspector] public int steer;
-    [HideInInspector] public int brake;
+    [HideInInspector] public float acceleration;
+    [HideInInspector] public float steer;
+    [HideInInspector] public float brake;
 
     //used to determine which team car is one (team one or team two)
     BehaviorParameters behaviorParameters;
@@ -55,7 +53,7 @@ public class RLAgent : Agent
         }
 
         this.MaxStep = 3000;//number of steps taken by agent before environemnt resets (used to speed up training in case it gets stuck somewhere)
-        existentialPenalty = 0.5f / MaxStep;//makes sure timePenalty at most sums to 1
+        existentialPenalty = 1f / MaxStep;//makes sure timePenalty at most sums to 1
     }
 
     //an Episode can be thought of as an iteration of training
@@ -67,12 +65,7 @@ public class RLAgent : Agent
         transform.rotation = startingRotation;
         transform.position = startingPosition;
         ballTransform.position = new Vector3(0f, 5f, 0f);
-
-        episode++;
-        Debug.Log("New Ep: "+episode);
-        
     }
-
 
     //defines observations available to agent (input of model)
     public override void CollectObservations(VectorSensor sensor)
@@ -95,13 +88,23 @@ public class RLAgent : Agent
         //actions.DiscreteActions[1]: controls steer( 0 is steer left, 1 is forward, 2 is steer right)
         //actions.DiscreteActions[2]: controls steer( 0 is no brake, 1 brake)
 
-        acceleration = actions.DiscreteActions[0];
-        steer = actions.DiscreteActions[1];
+        acceleration = actions.DiscreteActions[0]-1;//minus 1 such that values are -1,0,1 (Rather than 0,1,2)
+        steer = actions.DiscreteActions[1]-1;
         brake = actions.DiscreteActions[2];
 
         AddReward(-existentialPenalty);//add penalty for existing
         timePenalty += existentialPenalty;//used to deduct from reward when an agent actually scores (this is done in Ball.cs)
 
+    }
+
+    //allows for manual control of AI
+    public override void Heuristic(in ActionBuffers actionsOut)
+    {
+
+        ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
+        discreteActions[0] = (int) Input.GetAxisRaw("Vertical")+1;//can be casted to int since values are always -1,0,1 (no smoothing)
+        discreteActions[1] = (int )Input.GetAxisRaw("Horizontal")+1;
+        discreteActions[2] = Input.GetKey(KeyCode.Space) == true ? 1 : 0;
     }
 
     void OnCollisionEnter(Collision col)

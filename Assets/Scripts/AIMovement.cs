@@ -33,8 +33,8 @@ public class AIMovement : MonoBehaviour
     private void FixedUpdate()
 	{
 		//fetch input from agent
-		verticalInput = agent.acceleration - 1;//(-1 because acceleration is either 0,1,2)
-		horizontalInput = agent.steer - 1;//(-1 because steer is either 0,1,2)
+		verticalInput = agent.acceleration;//(-1 because acceleration is either 0,1,2)
+		horizontalInput = agent.steer;//(-1 because steer is either 0,1,2)
 
 
 		//update current steer angle

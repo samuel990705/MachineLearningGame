@@ -2,22 +2,22 @@
     "PlaySoccer": {
         "checkpoints": [
             {
-                "steps": 102256,
-                "file_path": "results/ppo/PlaySoccer/PlaySoccer-102256.onnx",
+                "steps": 3168,
+                "file_path": "results/ppo/PlaySoccer/PlaySoccer-3168.onnx",
                 "reward": -1.0000000894069672,
-                "creation_time": 1620509462.148653,
+                "creation_time": 1620523504.253726,
                 "auxillary_file_paths": [
-                    "results/ppo/PlaySoccer/PlaySoccer-102256.pt"
+                    "results/ppo/PlaySoccer/PlaySoccer-3168.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 102256,
+            "steps": 3168,
             "file_path": "results/ppo/PlaySoccer.onnx",
             "reward": -1.0000000894069672,
-            "creation_time": 1620509462.148653,
+            "creation_time": 1620523504.253726,
             "auxillary_file_paths": [
-                "results/ppo/PlaySoccer/PlaySoccer-102256.pt"
+                "results/ppo/PlaySoccer/PlaySoccer-3168.pt"
             ]
         }
     },
