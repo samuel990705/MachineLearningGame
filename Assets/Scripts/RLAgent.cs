@@ -63,32 +63,32 @@ public class RLAgent : Agent
         //reset training environment
         timePenalty = 0;
         transform.rotation = startingRotation;
-        transform.position = startingPosition;
-        ballTransform.position = new Vector3(0f, 5f, 0f);
+        transform.localPosition = startingPosition;
+        ballTransform.localPosition = new Vector3(0f, 5f, 0f);
     }
 
     //defines observations available to agent (input of model)
     public override void CollectObservations(VectorSensor sensor)
     {
         //15 inputs total
-        sensor.AddObservation(this.transform);//own position (3 inputs)
-        sensor.AddObservation(this.transform.rotation);//own rotation (3 inputs)
+        sensor.AddObservation(this.transform.localPosition);//own position (3 inputs)
+        sensor.AddObservation(this.transform.rotation.eulerAngles);//own rotation (3 inputs)
 
-        sensor.AddObservation(opponentTransform.position);//opponent position (3 inputs)
-        sensor.AddObservation(opponentTransform.rotation);//opponent rotation (3 inputs)
+        sensor.AddObservation(opponentTransform.localPosition);//opponent position (3 inputs)
+        sensor.AddObservation(opponentTransform.rotation.eulerAngles);//opponent rotation (3 inputs)
 
-        sensor.AddObservation(ballTransform.position);//ball position (3 inputs)
+        sensor.AddObservation(ballTransform.localPosition);//ball position (3 inputs)
     }
 
 
     //defines actions available to agent (output of model)
     public override void OnActionReceived(ActionBuffers actions)
     {
-        //actions.DiscreteActions[0]: controls acceleration( 0 is decelerate, 1 is no acceleration, 2 is accelerate)
-        //actions.DiscreteActions[1]: controls steer( 0 is steer left, 1 is forward, 2 is steer right)
-        //actions.DiscreteActions[2]: controls steer( 0 is no brake, 1 brake)
+        //actions.DiscreteActions[0]: controls acceleration( -1 is decelerate, 0 is no acceleration, 1 is accelerate)
+        //actions.DiscreteActions[1]: controls steer( -1 is steer left, 0 is forward, 1 is steer right)
+        //actions.DiscreteActions[2]: controls steer( 0 is no brake, 1 is brake)
 
-        acceleration = actions.DiscreteActions[0]-1;//minus 1 such that values are -1,0,1 (Rather than 0,1,2)
+        acceleration = actions.DiscreteActions[0]-1;//minus 1 such that values are -1,0,1 (Rather than 0,1,2, which is the default)
         steer = actions.DiscreteActions[1]-1;
         brake = actions.DiscreteActions[2];
 
@@ -97,7 +97,7 @@ public class RLAgent : Agent
 
     }
 
-    //allows for manual control of AI
+    //allows for manual control of AI (for debugging purposes)
     public override void Heuristic(in ActionBuffers actionsOut)
     {
 
@@ -118,7 +118,8 @@ public class RLAgent : Agent
         //discourages colliding with opposing buggy
         if (col.gameObject.CompareTag("Buggy1") || col.gameObject.CompareTag("Buggy2"))//one of these conditions is met if collided with opponent buggy
         {
-            AddReward(-0.1f);
+            SetReward(-0.5f);
+            EndEpisode();
         }
     }
 
