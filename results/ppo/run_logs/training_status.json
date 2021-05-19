@@ -2,28 +2,23 @@
     "PlaySoccer": {
         "checkpoints": [
             {
-                "steps": 64,
-                "file_path": "results/ppo/PlaySoccer/PlaySoccer-64.onnx",
-                "reward": null,
-                "creation_time": 1620527560.363381,
-                "auxillary_file_paths": [
-                    "results/ppo/PlaySoccer/PlaySoccer-64.pt"
-                ]
+                "steps": 6151,
+                "file_path": "results/ppo/PlaySoccer/PlaySoccer-6151.onnx",
+                "reward": -0.5660897779923219,
+                "creation_time": 1621441661.623177
             }
         ],
         "final_checkpoint": {
-            "steps": 64,
+            "steps": 6151,
             "file_path": "results/ppo/PlaySoccer.onnx",
-            "reward": null,
-            "creation_time": 1620527560.363381,
-            "auxillary_file_paths": [
-                "results/ppo/PlaySoccer/PlaySoccer-64.pt"
-            ]
+            "reward": -0.5660897779923219,
+            "creation_time": 1621441661.623177
         }
     },
     "metadata": {
-        "stats_format_version": "0.3.0",
-        "mlagents_version": "0.26.0",
-        "torch_version": "1.8.1"
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.22.0",
+        "torch_version": "1.7.1",
+        "tensorflow_version": -1
     }
 }

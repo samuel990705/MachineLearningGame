@@ -5,9 +5,9 @@ using UnityEngine;
 public class AIMovement : MonoBehaviour
 {
 	//same as player input but for AI
-	private float horizontalInput;
-	private float verticalInput;
-	private float steerAngle;//current angle being steered
+	public float horizontalInput;
+	public float verticalInput;
+	public float steerAngle;//current angle being steered
 
 	//referene to respective wheel colliders
 	public WheelCollider LFWheel, RFWheel;//left and right front wheel
@@ -47,15 +47,15 @@ public class AIMovement : MonoBehaviour
 		RFWheel.motorTorque = motorForce * verticalInput;
 
 		//if brake key is held
-		float brake = agent.brake == 1 ? brakeTorque : 0;//if agent.brake==1, then brake, otherwise dont brake
-		LRWheel.brakeTorque = brake;//add brakeTorque to rear wheels
-		RRWheel.brakeTorque = brake;
+		//float brake = agent.brake == 1 ? brakeTorque : 0;//if agent.brake==1, then brake, otherwise dont brake
+		//LRWheel.brakeTorque = brake;//add brakeTorque to rear wheels
+		//RRWheel.brakeTorque = brake;
 
-		float stiffness = brake = agent.brake == 1 ? driftingStiffness : defaultStiffness;//1.0f is default stiffness of wheels
-		WheelFrictionCurve sidewaysFriction = LRWheel.sidewaysFriction;
-		sidewaysFriction.stiffness = stiffness;
-		LRWheel.sidewaysFriction = sidewaysFriction;//change stiffness of rear wheels
-		RRWheel.sidewaysFriction = sidewaysFriction;
+		//float stiffness = brake = agent.brake == 1 ? driftingStiffness : defaultStiffness;//1.0f is default stiffness of wheels
+		//WheelFrictionCurve sidewaysFriction = LRWheel.sidewaysFriction;
+		//sidewaysFriction.stiffness = stiffness;
+		//LRWheel.sidewaysFriction = sidewaysFriction;//change stiffness of rear wheels
+		//RRWheel.sidewaysFriction = sidewaysFriction;
 
 		//update rotation and position of wheels
 		updateWheelTransform(LFWheel, LFTransform);

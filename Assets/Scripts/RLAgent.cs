@@ -90,7 +90,10 @@ public class RLAgent : Agent
 
         acceleration = actions.DiscreteActions[0]-1;//minus 1 such that values are -1,0,1 (Rather than 0,1,2, which is the default)
         steer = actions.DiscreteActions[1]-1;
-        brake = actions.DiscreteActions[2];
+        //brake = actions.DiscreteActions[2];
+
+        //Debug.Log(team+": ("+acceleration+", "+ steer+", "+ brake+")");
+        Debug.Log(team + ": (" + acceleration + ", " + steer + ")");
 
         AddReward(-existentialPenalty);//add penalty for existing
         timePenalty += existentialPenalty;//used to deduct from reward when an agent actually scores (this is done in Ball.cs)
@@ -104,7 +107,7 @@ public class RLAgent : Agent
         ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
         discreteActions[0] = (int) Input.GetAxisRaw("Vertical")+1;//can be casted to int since values are always -1,0,1 (no smoothing)
         discreteActions[1] = (int )Input.GetAxisRaw("Horizontal")+1;
-        discreteActions[2] = Input.GetKey(KeyCode.Space) == true ? 1 : 0;
+        //discreteActions[2] = Input.GetKey(KeyCode.Space) == true ? 1 : 0;
     }
 
     void OnCollisionEnter(Collision col)
