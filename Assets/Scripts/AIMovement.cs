@@ -20,7 +20,7 @@ public class AIMovement : MonoBehaviour
 	public float maxSteerAngle = 35;//limits how fast car can steer
 	public float motorForce = 1000;//force applied when accelerating
 	public float brakeTorque = 500;//force applied when accelerating
-	public float driftingStiffness = 0.5f;//stiffness of rear wheels when brake is held (to allow for drifting)
+	public float driftingStiffness = 0.75f;//stiffness of rear wheels when brake is held (to allow for drifting)
 	public float defaultStiffness = 1.75f;//stiffness of rear wheels when brake is not held (so that car doesn't slide around)
 
 	RLAgent agent;//reference to the RLAgent script
@@ -42,9 +42,11 @@ public class AIMovement : MonoBehaviour
 		LFWheel.steerAngle = this.steerAngle;
 		RFWheel.steerAngle = this.steerAngle;
 
-		//update acceleration (only powers front wheels)
+		//update acceleration (Power all 4 wheels: All-wheel drive)
 		LFWheel.motorTorque = motorForce * verticalInput;
 		RFWheel.motorTorque = motorForce * verticalInput;
+		LRWheel.motorTorque = motorForce * verticalInput;
+		RRWheel.motorTorque = motorForce * verticalInput;
 
 		//if brake key is held
 		//float brake = agent.brake == 1 ? brakeTorque : 0;//if agent.brake==1, then brake, otherwise dont brake

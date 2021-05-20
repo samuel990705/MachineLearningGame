@@ -12,6 +12,26 @@ TagManager:
   - wall
   - Goal1
   - Goal2
+  - agent
+  - ground
+  - target
+  - symbol_O
+  - stone
+  - pyramid
+  - iWall
+  - pit
+  - symbol_O_Goal
+  - symbol_X
+  - symbol_X_Goal
+  - goal
+  - block
+  - walkableSurface
+  - switchOff
+  - badFood
+  - food
+  - Ball
+  - Buggy1
+  - Buggy2
   layers:
   - Default
   - TransparentFX

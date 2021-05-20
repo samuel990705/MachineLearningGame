@@ -19,7 +19,7 @@ public class CarController : MonoBehaviour
 	public float maxSteerAngle = 35;//limits how fast car can steer
 	public float motorForce = 1000;//force applied when accelerating
 	public float brakeTorque = 500;//force applied when accelerating
-	public float driftingStiffness = 0.5f;//stiffness of rear wheels when brake is held (to allow for drifting)
+	public float driftingStiffness = 0.75f;//stiffness of rear wheels when brake is held (to allow for drifting)
 	public float defaultStiffness = 1.75f;//stiffness of rear wheels when brake is not held (so that car doesn't slide around)
 
 
@@ -34,18 +34,18 @@ public class CarController : MonoBehaviour
 		LFWheel.steerAngle = this.steerAngle;
 		RFWheel.steerAngle = this.steerAngle;
 
-		//update acceleration (only powers front wheels)
+		//update acceleration (Power all 4 wheels: All-wheel drive)
 		LFWheel.motorTorque = motorForce * verticalInput;
 		RFWheel.motorTorque = motorForce * verticalInput;
-		//LRWheel.motorTorque = motorForce * verticalInput;
-		//RRWheel.motorTorque = motorForce * verticalInput;
+        LRWheel.motorTorque = motorForce * verticalInput;
+        RRWheel.motorTorque = motorForce * verticalInput;
 
-		//if brake key is held
-		float brake = Input.GetKey(KeyCode.Space) == true ? brakeTorque : 0;
+        //if brake key is held
+        float brake = Input.GetKey(KeyCode.Space) == true ? brakeTorque : 0;
 		LRWheel.brakeTorque = brake;//add brakeTorque to rear wheels
 		RRWheel.brakeTorque = brake;
 
-		float stiffness = Input.GetKey(KeyCode.Space) == true ? driftingStiffness : defaultStiffness;//1.0f is default stiffness of wheels
+		float stiffness = Input.GetKey(KeyCode.Space) == true ? driftingStiffness : defaultStiffness;//change sideway friction stiffness when drifting
 		WheelFrictionCurve sidewaysFriction = LRWheel.sidewaysFriction;
 		sidewaysFriction.stiffness = stiffness;
 		LRWheel.sidewaysFriction = sidewaysFriction;//change stiffness of rear wheels

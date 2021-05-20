@@ -63,7 +63,8 @@ public class RLAgent : Agent
         //reset training environment
         timePenalty = 0;
         transform.rotation = startingRotation;
-        transform.localPosition = startingPosition;
+        //add random offset so model generalizes better (Rather than just running forwar to score)
+        transform.localPosition = startingPosition+new Vector3(Random.Range(-25f, 25f),0, Random.Range(-15f, 15f));
         ballTransform.localPosition = new Vector3(0f, 5f, 0f);
     }
 
@@ -120,8 +121,7 @@ public class RLAgent : Agent
         //discourages colliding with opposing buggy
         if (col.gameObject.CompareTag("Buggy1") || col.gameObject.CompareTag("Buggy2"))//one of these conditions is met if collided with opponent buggy
         {
-            SetReward(-0.5f);
-            EndEpisode();
+            SetReward(-0.2f);
         }
     }
 
