@@ -32,6 +32,8 @@ TagManager:
   - Ball
   - Buggy1
   - Buggy2
+  - Cube1
+  - Cube2
   layers:
   - Default
   - TransparentFX

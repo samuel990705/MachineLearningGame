@@ -6,8 +6,8 @@ public class CameraController : MonoBehaviour
 {
     public Transform car;
     public Vector3 offset;
-    public float followSpeed = 10;
-    public float lookSpeed = 10;
+    public float followSpeed = 20;
+    public float lookSpeed = 20;
 
     private void FixedUpdate()
     {

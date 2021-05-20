@@ -1,18 +1,18 @@
 {
-    "PlaySoccer": {
+    "CubeSoccer": {
         "checkpoints": [
             {
-                "steps": 216165,
-                "file_path": "results/ppo/PlaySoccer/PlaySoccer-216165.onnx",
-                "reward": 0.3611666411161423,
-                "creation_time": 1621504243.6060128
+                "steps": 0,
+                "file_path": "results/ppo/CubeSoccer/CubeSoccer-0.onnx",
+                "reward": null,
+                "creation_time": 1621527651.022448
             }
         ],
         "final_checkpoint": {
-            "steps": 216165,
-            "file_path": "results/ppo/PlaySoccer.onnx",
-            "reward": 0.3611666411161423,
-            "creation_time": 1621504243.6060128
+            "steps": 0,
+            "file_path": "results/ppo/CubeSoccer.onnx",
+            "reward": null,
+            "creation_time": 1621527651.022448
         }
     },
     "metadata": {

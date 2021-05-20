@@ -95,6 +95,8 @@ public class RLAgent : Agent
 
         //Debug.Log(team + ": (" + acceleration + ", " + steer + ")");
 
+        AddReward(acceleration * 0.0001f);
+
         AddReward(-existentialPenalty);//add penalty for existing
         timePenalty += existentialPenalty;//used to deduct from reward when an agent actually scores (this is done in Ball.cs)
 
