@@ -113,7 +113,7 @@ public class RLCube : Agent
         //add reward for touching ball (speeds up training)
         if (col.gameObject.CompareTag("Ball"))
         {
-            //AddReward(0.15f);
+            AddReward(0.15f);
             //AddReward(1.0f);
             //opponentAgent.EndEpisode();
             //EndEpisode();
@@ -129,7 +129,14 @@ public class RLCube : Agent
 
         if (col.gameObject.CompareTag("Wall"))
         {
-            //SetReward(-1.0f);
+            SetReward(-0.1f);
+            //opponentAgent.EndEpisode();
+            //EndEpisode();
+        }
+
+        if (col.gameObject.CompareTag("Goal1") || col.gameObject.CompareTag("Goal2"))
+        {
+            SetReward(-0.1f);
             //opponentAgent.EndEpisode();
             //EndEpisode();
         }

@@ -2,29 +2,41 @@
     "CubeSoccer": {
         "checkpoints": [
             {
-                "steps": 499996,
-                "file_path": "results/ppo/CubeSoccer/CubeSoccer-499996.onnx",
-                "reward": 0.08612745498236613,
-                "creation_time": 1621577967.150957
+                "steps": 7999982,
+                "file_path": "results/ppo/CubeSoccer/CubeSoccer-7999982.onnx",
+                "reward": 0.5150392129962497,
+                "creation_time": 1621596449.210853
             },
             {
-                "steps": 999997,
-                "file_path": "results/ppo/CubeSoccer/CubeSoccer-999997.onnx",
-                "reward": 0.5243919704047421,
-                "creation_time": 1621578699.858603
+                "steps": 8499913,
+                "file_path": "results/ppo/CubeSoccer/CubeSoccer-8499913.onnx",
+                "reward": 0.6022467379705994,
+                "creation_time": 1621597175.2050052
             },
             {
-                "steps": 1400636,
-                "file_path": "results/ppo/CubeSoccer/CubeSoccer-1400636.onnx",
-                "reward": 0.5664958634960525,
-                "creation_time": 1621579317.662833
+                "steps": 8999985,
+                "file_path": "results/ppo/CubeSoccer/CubeSoccer-8999985.onnx",
+                "reward": 0.4734047671513898,
+                "creation_time": 1621597906.781386
+            },
+            {
+                "steps": 9499998,
+                "file_path": "results/ppo/CubeSoccer/CubeSoccer-9499998.onnx",
+                "reward": 0.5278986944981358,
+                "creation_time": 1621598633.139461
+            },
+            {
+                "steps": 9519498,
+                "file_path": "results/ppo/CubeSoccer/CubeSoccer-9519498.onnx",
+                "reward": 0.6309616238697234,
+                "creation_time": 1621598662.419578
             }
         ],
         "final_checkpoint": {
-            "steps": 1400636,
+            "steps": 9519498,
             "file_path": "results/ppo/CubeSoccer.onnx",
-            "reward": 0.5664958634960525,
-            "creation_time": 1621579317.662833
+            "reward": 0.6309616238697234,
+            "creation_time": 1621598662.419578
         }
     },
     "metadata": {

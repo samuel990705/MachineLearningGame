@@ -15,7 +15,7 @@ public class CubeMovement : MonoBehaviour
     float yMove;
     //float yRotate;
 
-    float ballForce = 2000f;
+    float ballForce = 1000f;
 
     [SerializeField] private GameObject ball;
     Rigidbody ballBody;

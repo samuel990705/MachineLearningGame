@@ -34,6 +34,7 @@ TagManager:
   - Buggy2
   - Cube1
   - Cube2
+  - Wall
   layers:
   - Default
   - TransparentFX
