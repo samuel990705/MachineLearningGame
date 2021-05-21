@@ -1,6 +1,7 @@
 # MachineLearningGame
 
-![Commit History] (./img/commitHistory.jpg)
+Commit history from previous repository:
+![Commit History](https://github.com/samuel990705/MachineLearningGame/blob/main/img/commitHistory.jpg?raw=true)
 
 Controls
 - W,S to accelerate/decelerate
@@ -41,7 +42,7 @@ ML reward design
 - Add reward for scoring 
 
 
-#Proof-Of-Concept Simplification
+# Proof-Of-Concept Simplification
 Since training would have taken way too long for wheelcolliders, a Proof-Of-Concept scenario was created to demonstrate the model. The following simpifications were made to the original game...
 - Reduced to 6 inputs: removed rotation of players and y readings (from 15 inputs)
 - Reduced to 6 outputs: forward/stay/backward and left/straight/right
