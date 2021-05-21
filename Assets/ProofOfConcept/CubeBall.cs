@@ -7,9 +7,10 @@ public class CubeBall : MonoBehaviour
     [SerializeField] private RLCube cube1;
     [SerializeField] private RLCube cube2;
 
+
     public float scoreReward = 1f;
 
-    void OnCollisionEnter(Collision col)
+        void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.CompareTag("Goal1")) //ball touched Goal1 (Agent 2 scored)
         {
@@ -25,7 +26,6 @@ public class CubeBall : MonoBehaviour
         }
 
         Debug.Log(col.gameObject.tag + " scored!");
-
 
         //episode ends once someone scores
         cube1.EndEpisode();

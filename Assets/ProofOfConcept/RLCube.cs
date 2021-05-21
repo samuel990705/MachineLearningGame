@@ -9,8 +9,14 @@ using Unity.MLAgents.Sensors;
 public class RLCube : Agent
 {
 
-    [SerializeField] private Transform opponentTransform;
-    [SerializeField] private Transform ballTransform;
+    [SerializeField] private GameObject opponent;
+    private Transform opponentTransform;
+    private RLCube opponentAgent;
+
+
+    [SerializeField] private GameObject ball;
+    private Transform ballTransform;
+    private Rigidbody ballBody;
 
     [HideInInspector] public float verticalInput;
     [HideInInspector] public float horizontalInput;
@@ -29,20 +35,26 @@ public class RLCube : Agent
     Vector3 startingPosition;
     Quaternion startingRotation;
 
+    private Rigidbody body;
+
     public override void Initialize()
     {
-
+        ballTransform=ball.GetComponent<Transform>();
+        ballBody = ball.GetComponent<Rigidbody>();
+        body = gameObject.GetComponent<Rigidbody>();
+        opponentTransform=opponent.GetComponent<Transform>();
+        opponentAgent = opponent.GetComponent<RLCube>();
         behaviorParameters = gameObject.GetComponent<BehaviorParameters>();//gets BehaviorParameters component
         if (behaviorParameters.TeamId == (int)Team.one)//behaviorParameters.TeamId is a parameter of the component that is preset in the inspector
         {
             team = Team.one;
-            startingPosition = new Vector3(0f, 2f, -25f);
+            startingPosition = new Vector3(0f, 2.2f, -25f);
             startingRotation = Quaternion.Euler(0f, 0f, 0f);
         }
         else
         {
             team = Team.two;
-            startingPosition = new Vector3(0f, 2f, 25f);
+            startingPosition = new Vector3(0f, 2.2f, 25f);
             startingRotation = Quaternion.Euler(0f, 180f, 0f);
         }
 
@@ -53,9 +65,12 @@ public class RLCube : Agent
     public override void OnEpisodeBegin()
     {
         timePenalty = 0;
-        transform.rotation = startingRotation;
-        transform.localPosition = startingPosition + new Vector3(Random.Range(-25f, 25f), 0, Random.Range(-15f, 15f));
+
+        transform.localPosition = startingPosition + new Vector3(Random.Range(-18f, 18f),0f, Random.Range(-15f, 15f));
+        body.velocity = Vector3.zero;
+        ballBody.velocity = Vector3.zero;
         ballTransform.localPosition = new Vector3(0f, 5f, 0f);
+
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -98,7 +113,10 @@ public class RLCube : Agent
         //add reward for touching ball (speeds up training)
         if (col.gameObject.CompareTag("Ball"))
         {
-            AddReward(0.15f);
+            //AddReward(0.15f);
+            //AddReward(1.0f);
+            //opponentAgent.EndEpisode();
+            //EndEpisode();
             //Debug.Log(team + "Touched Ball");
         }
 
@@ -107,6 +125,13 @@ public class RLCube : Agent
         {
             AddReward(-0.025f);
             //Debug.Log("player collide");
+        }
+
+        if (col.gameObject.CompareTag("Wall"))
+        {
+            //SetReward(-1.0f);
+            //opponentAgent.EndEpisode();
+            //EndEpisode();
         }
     }
 }

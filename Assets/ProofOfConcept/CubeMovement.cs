@@ -6,7 +6,8 @@ public class CubeMovement : MonoBehaviour
 {
     //CharacterController controller;
     Rigidbody body;
-    float moveSpeed = 0.45f;
+    //float moveSpeed = 0.45f;
+    float moveSpeed = 1000f;
     float rotateSpeed = 100.0f;
     float gravity = 25.0f;
     Vector3 moveDirection;
@@ -44,9 +45,9 @@ public class CubeMovement : MonoBehaviour
 
         moveDirection = new Vector3(yMove, 0.0f, xMove);
         moveDirection *= moveSpeed;
-        //moveDirection.y -= gravity;
-        body.MovePosition(transform.position + moveDirection);
-        //controller.Move(moveDirection * Time.fixedDeltaTime);
+
+        //body.MovePosition(transform.position + moveDirection);
+        body.AddForce(moveDirection);
     }
 
     void Update()

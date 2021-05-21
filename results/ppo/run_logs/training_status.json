@@ -2,23 +2,29 @@
     "CubeSoccer": {
         "checkpoints": [
             {
-                "steps": 499800,
-                "file_path": "results/ppo/CubeSoccer/CubeSoccer-499800.onnx",
-                "reward": -1.0143940593257095,
-                "creation_time": 1621563777.832286
+                "steps": 499996,
+                "file_path": "results/ppo/CubeSoccer/CubeSoccer-499996.onnx",
+                "reward": 0.08612745498236613,
+                "creation_time": 1621577967.150957
             },
             {
-                "steps": 630000,
-                "file_path": "results/ppo/CubeSoccer/CubeSoccer-630000.onnx",
-                "reward": null,
-                "creation_time": 1621563990.1938822
+                "steps": 999997,
+                "file_path": "results/ppo/CubeSoccer/CubeSoccer-999997.onnx",
+                "reward": 0.5243919704047421,
+                "creation_time": 1621578699.858603
+            },
+            {
+                "steps": 1400636,
+                "file_path": "results/ppo/CubeSoccer/CubeSoccer-1400636.onnx",
+                "reward": 0.5664958634960525,
+                "creation_time": 1621579317.662833
             }
         ],
         "final_checkpoint": {
-            "steps": 630000,
+            "steps": 1400636,
             "file_path": "results/ppo/CubeSoccer.onnx",
-            "reward": null,
-            "creation_time": 1621563990.1938822
+            "reward": 0.5664958634960525,
+            "creation_time": 1621579317.662833
         }
     },
     "metadata": {
