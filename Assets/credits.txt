@@ -1,0 +1,5 @@
+Buggy model: https://assetstore.unity.com/packages/tools/physics/realistic-buggy-kit-62978
+Football arena: https://assetstore.unity.com/packages/3d/environments/m-sci-fi-football-arena-107403
+mlagents boilerplate code: https://www.youtube.com/watch?v=zPFU30tbyKs&t=1808s
+POC stadium and player: https://github.com/Unity-Technologies/ml-agents
+Start menu font: https://www.1001fonts.com/sofachrome-font.html
