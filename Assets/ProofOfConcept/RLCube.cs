@@ -29,9 +29,9 @@ public class RLCube : Agent
     Vector3 startingPosition;
     Quaternion startingRotation;
 
-
     public override void Initialize()
     {
+
         behaviorParameters = gameObject.GetComponent<BehaviorParameters>();//gets BehaviorParameters component
         if (behaviorParameters.TeamId == (int)Team.one)//behaviorParameters.TeamId is a parameter of the component that is preset in the inspector
         {
@@ -60,14 +60,16 @@ public class RLCube : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        //15 inputs total
-        sensor.AddObservation(this.transform.localPosition);//own position (3 inputs)
-        sensor.AddObservation(this.transform.rotation.eulerAngles);//own rotation (3 inputs)
+        //6 inputs total
+        sensor.AddObservation(this.transform.localPosition.x);
+        sensor.AddObservation(this.transform.localPosition.z);
 
-        sensor.AddObservation(opponentTransform.localPosition);//opponent position (3 inputs)
-        sensor.AddObservation(opponentTransform.rotation.eulerAngles);//opponent rotation (3 inputs)
+        sensor.AddObservation(opponentTransform.localPosition.x);
+        sensor.AddObservation(opponentTransform.localPosition.z);
 
-        sensor.AddObservation(ballTransform.localPosition);//ball position (3 inputs)
+
+        sensor.AddObservation(ballTransform.localPosition.x);
+        sensor.AddObservation(ballTransform.localPosition.z);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -76,9 +78,11 @@ public class RLCube : Agent
         //actions.DiscreteActions[1]: controls horizontal movement( -1 is left, 0 is stay, 1 is right)
         verticalInput = actions.DiscreteActions[0] - 1;
         horizontalInput = actions.DiscreteActions[1] - 1;
+
+        //Debug.Log(verticalInput + ", " + horizontalInput);
+
         AddReward(-existentialPenalty);
         timePenalty += existentialPenalty;//used to deduct from reward when an agent actually scores (this is done in Ball.cs)
-
     }
 
     //used to manually control cube when there is no model
@@ -94,13 +98,15 @@ public class RLCube : Agent
         //add reward for touching ball (speeds up training)
         if (col.gameObject.CompareTag("Ball"))
         {
-            AddReward(0.1f);
+            AddReward(0.15f);
+            //Debug.Log(team + "Touched Ball");
         }
 
-        //discourages colliding with opposing buggy
+        //discourages colliding with opponent
         if (col.gameObject.CompareTag("Cube1") || col.gameObject.CompareTag("Cube2"))//one of these conditions is met if collided with opponent buggy
         {
-            SetReward(-0.2f);
+            AddReward(-0.025f);
+            //Debug.Log("player collide");
         }
     }
 }

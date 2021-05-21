@@ -24,6 +24,8 @@ public class CubeBall : MonoBehaviour
             return;//dont end episode unless collided with goal
         }
 
+        Debug.Log(col.gameObject.tag + " scored!");
+
 
         //episode ends once someone scores
         cube1.EndEpisode();
