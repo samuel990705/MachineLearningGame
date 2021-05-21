@@ -36,6 +36,9 @@ public class RLAgent : Agent
     Vector3 startingPosition;
     Quaternion startingRotation;
 
+    //if this RL agent is currently playing against player
+    private bool playing;
+
     //called once
     public override void Initialize()
     {
@@ -53,7 +56,15 @@ public class RLAgent : Agent
             startingRotation = Quaternion.Euler(0f, 180f, 0f);
         }
 
+        playing = SceneManager.GetActiveScene().name == "PlayScene" ? true : false;
+
+
         this.MaxStep = 3000;//number of steps taken by agent before environemnt resets (used to speed up training in case it gets stuck somewhere)
+        if (playing)
+        {
+            this.MaxStep = int.MaxValue;
+        }
+
         existentialPenalty = 1f / MaxStep;//makes sure timePenalty at most sums to 1
     }
 
@@ -66,7 +77,7 @@ public class RLAgent : Agent
         transform.rotation = startingRotation;
         //add random offset so model generalizes better (Rather than just running forwar to score)
         transform.localPosition = startingPosition+new Vector3(Random.Range(-25f, 25f),0, Random.Range(-15f, 15f));
-        if (SceneManager.GetActiveScene().name == "PlayScene")//current playing
+        if (playing)//current playing
         {
             transform.localPosition = startingPosition;
         }
