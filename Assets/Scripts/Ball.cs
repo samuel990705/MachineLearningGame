@@ -23,7 +23,6 @@ public class Ball : MonoBehaviour
             return;//dont end episode unless collided with goal
         }
 
-
         //episode ends once someone scores
         agent1.EndEpisode();
         agent2.EndEpisode();

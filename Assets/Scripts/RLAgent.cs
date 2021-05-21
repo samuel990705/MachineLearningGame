@@ -5,6 +5,7 @@ using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Policies;
 using Unity.MLAgents.Sensors;
+using UnityEngine.SceneManagement;
 
 public class RLAgent : Agent
 {
@@ -65,6 +66,10 @@ public class RLAgent : Agent
         transform.rotation = startingRotation;
         //add random offset so model generalizes better (Rather than just running forwar to score)
         transform.localPosition = startingPosition+new Vector3(Random.Range(-25f, 25f),0, Random.Range(-15f, 15f));
+        if (SceneManager.GetActiveScene().name == "PlayScene")//current playing
+        {
+            transform.localPosition = startingPosition;
+        }
         ballTransform.localPosition = new Vector3(0f, 5f, 0f);
     }
 
